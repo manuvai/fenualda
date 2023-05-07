@@ -1,0 +1,68 @@
+@startuml Diagramme de classes
+
+hide empty members
+hide empty methods
+
+' Functions definition
+    !function $member($type, $name)
+    !return "<color:green>" + $type + "</color> " + $name
+    !endfunction
+' End functions definition
+
+class "World" as w {
+    -$member(int, currentLevelIndex)
+    -$member("List<Level>", levels)
+}
+
+class "AbstractCharacter" as ac {
+    #$member(Point, position)
+    #$member(int, hp)
+    #$member(int, atk)
+    #$member(int, def)
+    +$member(void, "attack(AbtractCharacter)")
+}
+
+class "Hero" as h {
+
+}
+
+class "Swordsman" as sm {
+
+}
+
+class "Archer" as cra {
+
+}
+
+class "Wizard" as wiz {
+
+}
+
+class "Enemy" as e {
+
+}
+
+class "Level" as l {
+    -$member(int, difficulty)
+    -$member("List<Enemy>", enemies)
+}
+
+' Liens
+
+h -up-|> ac
+h -down-> w
+
+e -up-|> ac
+
+sm --|> h
+
+cra --|> h
+
+wiz --|> h
+
+w "1..N" -right-> l
+
+l "1..N" -right-> e
+
+
+@enduml
