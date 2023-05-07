@@ -8,7 +8,7 @@ public class Main extends JFrame{
 
 	public Main(){
 		gp = new GamePanel();
-		setSize(512,400);
+		setSize(1090,720);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
 		setVisible(true);

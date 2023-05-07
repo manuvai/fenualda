@@ -23,10 +23,10 @@ public class World {
 	static final int PAN_UP = 0, PAN_DOWN = 1, PAN_LEFT = 2, PAN_RIGHT = 3;
 	
 	public World(){
-		BLOCK_DIRT_TOP= new ImageIcon("tile_topDirt1.png").getImage();
-		BLOCK_DIRT= new ImageIcon("tile_dirt1.png").getImage();
-		BLOCK_STONE= new ImageIcon("tile_stone.png").getImage();
-		BLOCK_SKY= new ImageIcon("tile_sky.png").getImage();
+		BLOCK_DIRT_TOP= new ImageIcon("src/tests/Game2_8/tile_topDirt1.png").getImage();
+		BLOCK_DIRT= new ImageIcon("src/tests/Game2_8/tile_dirt1.png").getImage();
+		BLOCK_STONE= new ImageIcon("src/tests/Game2_8/tile_stone.png").getImage();
+		BLOCK_SKY= new ImageIcon("src/tests/Game2_8/tile_sky.png").getImage();
 		blocks = new Rectangle[arrayNum];
 		blockImg = new Image[arrayNum]; 
 		isSolid = new boolean[arrayNum];

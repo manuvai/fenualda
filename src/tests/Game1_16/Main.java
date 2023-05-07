@@ -15,7 +15,7 @@ public class Main extends JFrame implements Runnable{
 	
 	static Rectangle player = new Rectangle(30, 50, 25, 25);
 	
-	static Rectangle enemy = new Rectangle(275, 175, 25, 25);
+	static Rectangle enemy = new Rectangle(40, 80, 25, 25);
 	
 	private Image dbImage;
 	private Graphics dbg;

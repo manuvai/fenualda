@@ -21,7 +21,7 @@ public class AI implements Runnable {
 	public AI(Rectangle r, Rectangle t){
 		AI = r;
 		target = t;
-		monster = new ImageIcon("Monster_Down.png").getImage();
+		monster = new ImageIcon("src/tests/Game1_16/Monster_Down.png").getImage();
 	}
 
 	public void draw(Graphics g){
@@ -76,9 +76,9 @@ public class AI implements Runnable {
 			monster = new ImageIcon("Monster_Left.png").getImage();
 */	
 		if (yDirection ==1)
-			monster = new ImageIcon("Monster_Down.png").getImage();
+			monster = new ImageIcon("src/tests/Game1_16/Monster_Down.png").getImage();
 		if (yDirection ==-1)
-			monster = new ImageIcon("Monster_Up.png").getImage();
+			monster = new ImageIcon("src/tests/Game1_16/Monster_Up.png").getImage();
 	}
 	
 	

@@ -16,7 +16,7 @@ public class Player {
 	
 	public Player(World world){
 		this.world = world;
-		playerImg = new ImageIcon("player.png").getImage();
+		playerImg = new ImageIcon("src/tests/Game2_6/player.png").getImage();
 		playerRect = new Rectangle(50,0,16,16);
 	}
 	
