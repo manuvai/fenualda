@@ -1,0 +1,110 @@
+@startuml Diagramme de classes
+
+hide empty members
+hide empty methods
+
+' Functions definition
+
+    !function $member($type, $name)
+    !return $name + " : <color:green>" + $type + "</color>"
+    !endfunction
+
+    !function $list($type, $name)
+    !return $member("List<" + $type + ">", $name)
+    !endfunction
+
+    !function $int($name)
+    !return $member(int, $name)
+    !endfunction
+
+    !function $string($name)
+    !return $member(String, $name)
+    !endfunction
+
+    !function $void($name)
+    !return $member(void, $name)
+    !endfunction
+
+' End functions definition
+
+' Classes definitions
+    
+
+    class "GamePanel" as gp {
+        +$void("draw()")
+    }
+
+    abstract "AbstractScreen" as as {
+        +$void("draw()")
+        +$void("update()")
+        +AbstractScreen(GamePanel)
+    }
+
+    class "WinScreen" as ws {
+        
+    }
+
+    class "LoseScreen" as ls {
+
+    }
+
+    class "HomeScreen" as hs {
+
+    }
+
+    class "GameScreen" as gs {
+
+    }
+
+    class "PointsScreen" as ps {
+        +$void("updatePoints(Hero)")
+    }
+
+    class "World" as w {
+        -$int(currentLevelIndex)
+        -$list(Level, levels)
+    }
+
+    class "Config" as conf {
+        -{static}$member(Config, instance)
+        +{static}$string("get(String)")
+    }
+
+    together {
+        namespace config.properties #dddddd { }
+
+        enum gstate as "GameStateEnum" <<stereotype>> {
+            RUNNING
+            WIN
+            PAUSE
+            LOSE
+            CONTINUED
+        }
+
+    }
+
+' End of Classes definitions
+
+' Links
+    as --> gp
+
+    ws --|> as
+
+    ls --|> as
+
+    hs --|> as
+
+    ps --|> as
+
+    gs --|> as
+    gs --|> w
+
+    gp -up-> as
+
+    gp -left-> conf
+
+    conf ..> config.properties : uses
+
+' End of Links
+
+@enduml
