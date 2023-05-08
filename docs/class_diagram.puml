@@ -7,62 +7,95 @@ hide empty methods
     !function $member($type, $name)
     !return "<color:green>" + $type + "</color> " + $name
     !endfunction
+
+    !function $list($type, $name)
+    !return $member("List<" + $type + ">", $name)
+    !endfunction
+
+    !function $int($name)
+    !return $member(int, $name)
+    !endfunction
+
+    !function $void($name)
+    !return $member(void, $name)
+    !endfunction
+
 ' End functions definition
 
-class "World" as w {
-    -$member(int, currentLevelIndex)
-    -$member("List<Level>", levels)
-}
+' Classes definitions
 
-class "AbstractCharacter" as ac {
-    #$member(Point, position)
-    #$member(int, hp)
-    #$member(int, atk)
-    #$member(int, def)
-    +$member(void, "attack(AbtractCharacter)")
-}
+    class "World" as w {
+        -$int(currentLevelIndex)
+        -$list(Level, levels)
+    }
 
-class "Hero" as h {
+    abstract "AbstractCharacter" as ac {
+        #$member(Point, position)
+        #$int(hp)
+        #$int(atk)
+        #$int(def)
+        +$void("takeDamage(double)")
+        +{abstract} $void("attack(AbtractCharacter)")
+        +{abstract} $void("move()")
+    }
 
-}
+    class "Hero" as h {
 
-class "Swordsman" as sm {
+    }
 
-}
+    interface "KeyAdapter" as ka {
+        +$void("keyPressed(KeyEvent)")
+        +$void("keyReleased(KeyEvent)")
+        +$void("keyTyped(KeyEvent)")
 
-class "Archer" as cra {
+    }
 
-}
+    class "Swordsman" as sm {
 
-class "Wizard" as wiz {
+    }
 
-}
+    class "Archer" as cra {
 
-class "Enemy" as e {
+    }
 
-}
+    class "Wizard" as wiz {
 
-class "Level" as l {
-    -$member(int, difficulty)
-    -$member("List<Enemy>", enemies)
-}
+    }
 
-' Liens
+    class "Enemy" as e {
+        +$void("move()")
 
-h -up-|> ac
-h -down-> w
+    }
 
-e -up-|> ac
+    class "IA" as ia {
+        +$void("move()")
+    }
 
-sm --|> h
+    class "Level" as l {
+        -$int(difficulty)
+        -$list(Enemy, enemies)
+    }
+' End of Classes definitions
 
-cra --|> h
+' Links
 
-wiz --|> h
+    h -up-|> ac
+    h -down-> w
+    h -left-> ka
 
-w "1..N" -right-> l
+    e -up-|> ac
+    e --> ia
 
-l "1..N" -right-> e
+    sm --|> h
 
+    cra --|> h
+
+    wiz --|> h
+
+    w "1..N" -right-> l
+
+    l "1..N" -right-> e
+
+' End of Links
 
 @enduml

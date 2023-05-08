@@ -1,0 +1,30 @@
+@startuml
+
+hide footbox
+
+actor Joueur as p
+participant "Écran d'accueil" as home
+participant "Écran de mort" as lose
+participant "Écran de victoire" as win
+participant "Écran de distribution de points" as points
+
+[-> p ++: Déroulement du jeu
+    p -> home ++: Choix du type de personnage + \nNiveau de difficulté
+    return Début de partie
+
+    p -> p : Déroulement de la partie
+
+    alt Le joueur est mort
+        p -> lose ++: Choix entre (Recommencer à zéro) ou (reprendre)
+        return
+    else Le joueur a gagné
+        p -> win ++: Affichage des informations du joueur
+        return
+    end
+    
+    p -> points ++: Affichage des points gagnés
+    return
+
+return Fin du jeu
+
+@enduml
