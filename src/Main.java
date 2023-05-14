@@ -1,33 +1,28 @@
+import ui.ComponentUI;
+import ui.panel.GamePanel;
+
 import javax.swing.*;
 import java.awt.*;
 
-public class Main extends JFrame {
+public class Main extends JFrame implements ComponentUI {
 
 	public Main(String title) {
 		this(
 				title,
-				Toolkit.getDefaultToolkit()
-						.getScreenSize()
+				GWIDTH,
+				GHEIGHT
 		);
-	}
-
-	public Main (String title, Dimension screenSize ) {
-		this(
-				title,
-				(int) screenSize.getWidth(),
-				(int) screenSize.getHeight()
-		);
-
 	}
 
 	public Main(String title, int width, int height) {
 
 		setTitle(title);
-		setSize(width,height);
+		setSize(width, height);
 
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		add(new GamePanel());
 		setResizable(false);
 		setVisible(true);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	public static void main(String[] args) {
 		new Main("Hello");
