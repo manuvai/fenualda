@@ -1,18 +1,17 @@
 package core.character;
 
+import core.map.AbstractMapComponent;
+
 import java.awt.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-public abstract class AbstractCharacter {
+public abstract class AbstractCharacter extends AbstractMapComponent {
 
-    protected Rectangle position;
     protected double health;
     protected double attack;
     protected double defense;
     protected int xDirection = CharacterDirection.STILL;
     protected int yDirection = CharacterDirection.STILL;
-
-    Image image;
 
     /*
         Common methods
@@ -36,43 +35,9 @@ public abstract class AbstractCharacter {
         opponent.takeDamage(attackPoints);
     }
 
-    public void draw(Graphics graphics) {
-        if (image == null) {
-            graphics.setColor(Color.BLUE);
-            graphics.fillRect(
-                    position.x,
-                    position.y,
-                    position.width,
-                    position.height
-            );
-
-        } else {
-            graphics.drawImage(
-                    image,
-                    position.x,
-                    position.y,
-                    null
-            );
-
-        }
-    }
-
     /*
         Getters and Setters
      */
-    public Rectangle getPosition() {
-        return position;
-    }
-
-    public void setPosition(int x, int y) {
-        position.x = x;
-        position.y = y;
-    }
-
-    public void setPosition(Rectangle position) {
-        this.position = position;
-    }
-
     public double getHealth() {
         return health;
     }
@@ -113,13 +78,6 @@ public abstract class AbstractCharacter {
         this.yDirection = yDirection;
     }
 
-    public Image getImage() {
-        return image;
-    }
-
-    public void setImage(Image image) {
-        this.image = image;
-    }
 
 
 }

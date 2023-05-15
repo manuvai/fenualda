@@ -30,12 +30,10 @@ hide empty methods
     }
 
     abstract "AbstractCharacter" as ac {
-        #$member(Point, position)
         #$int(hp)
         #$int(atk)
         #$int(def)
         +$void("takeDamage(double)")
-        +$void("draw(Graphics)")
         +{abstract} $void("attack(AbtractCharacter)")
         +{abstract} $void("move()")
     }
@@ -75,10 +73,38 @@ hide empty methods
     class "Level" as l {
         -$int(difficulty)
         -$list(Enemy, enemies)
+        -$list("List<MapTile>", tiles)
+    }
+
+    class "MapTile" as mt {
+        
+    }
+
+    class "MapObject" as mo {
+        -$member(Effect, effect)
+    }
+
+    abstract "Effect" as eff {
+        +{abstract} $member(void, "affect(Hero)")
+    }
+
+    class "HealEffect" as heal {
+
+    }
+
+    class "HarmEffect" as harm {
+
+    }
+
+    abstract "AbstractMapComponent" as mc {
+        #$member(Point, position)
+        #$member(Image, image)
+        +$void("draw(Graphics)")
     }
 ' End of Classes definitions
 
 ' Links
+    ac --|> mc
 
     h -up-|> ac
     h -down-> w
@@ -96,6 +122,16 @@ hide empty methods
     w "1..N" -right-> l
 
     l "1..N" -right-> e
+
+    l "1..N" -down-> mt
+
+    mt --|> mc
+
+    mt "0..1" --> mo
+
+    mo --> eff
+    heal -right-|> eff
+    harm -right-|> eff
 
 ' End of Links
 
