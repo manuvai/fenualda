@@ -129,6 +129,7 @@ hide empty methods
 
     mt "0..1" --> mo
 
+    mo -right-> mc
     mo --> eff
     heal -right-|> eff
     harm -right-|> eff
