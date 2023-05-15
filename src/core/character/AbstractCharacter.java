@@ -37,14 +37,7 @@ public abstract class AbstractCharacter {
     }
 
     public void draw(Graphics graphics) {
-        if (image != null) {
-            graphics.drawImage(
-                    image,
-                    position.x,
-                    position.y,
-                    null
-            );
-        } else {
+        if (image == null) {
             graphics.setColor(Color.BLUE);
             graphics.fillRect(
                     position.x,
@@ -52,6 +45,15 @@ public abstract class AbstractCharacter {
                     position.width,
                     position.height
             );
+
+        } else {
+            graphics.drawImage(
+                    image,
+                    position.x,
+                    position.y,
+                    null
+            );
+
         }
     }
 
