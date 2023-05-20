@@ -2,7 +2,7 @@ package core.character;
 
 import core.Level;
 import core.map.tiles.MapTile;
-import core.map.IMapTile;
+import core.map.tiles.IMapTile;
 
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -16,8 +16,8 @@ public class Hero extends AbstractCharacter {
     private List<Integer> pressedKeys = new ArrayList<>();
 
     public MapTile getCurrentMapTile() {
-        int i = (int) (position.getY() / IMapTile.MAP_HEIGHT);
-        int j = (int) (position.getX() / IMapTile.MAP_WIDTH);
+        int i = (int) (position.getY() / IMapTile.TILE_HEIGHT);
+        int j = (int) (position.getX() / IMapTile.TILE_WIDTH);
 
         Level currentLevel = getWorld()
                 .getCurrentLevel();
