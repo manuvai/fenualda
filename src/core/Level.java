@@ -1,7 +1,7 @@
 package core;
 
 import core.character.Enemy;
-import core.map.MapTile;
+import core.map.tiles.MapTile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,5 +28,13 @@ public class Level {
 
     public void setEnemies(List<Enemy> enemies) {
         this.enemies = enemies;
+    }
+
+    public List<List<MapTile>> getTiles() {
+        return tiles;
+    }
+
+    public void setTiles(List<List<MapTile>> tiles) {
+        this.tiles = tiles;
     }
 }

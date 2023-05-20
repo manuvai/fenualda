@@ -46,13 +46,20 @@ public class World implements KeyListener {
         }
     }
 
+    public Level getCurrentLevel() {
+        if (currentLevelIndex < 0) {
+            return null;
+        }
+        return levels.get(currentLevelIndex);
+    }
+
     public void draw(Graphics graphics) {
         hero.draw(graphics);
         boolean isLevelValid = currentLevelIndex >= 0 &&
                 levels.size() >= currentLevelIndex;
 
         if (isLevelValid) {
-            levels.get(currentLevelIndex)
+            getCurrentLevel()
                     .getEnemies()
                     .forEach(enemy -> enemy.draw(graphics));
 

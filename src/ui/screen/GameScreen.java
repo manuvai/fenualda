@@ -1,6 +1,7 @@
 package ui.screen;
 
 import core.World;
+import core.character.Hero;
 import ui.panel.GamePanel;
 
 import java.awt.*;
@@ -12,6 +13,13 @@ public class GameScreen extends AbstractScreen {
     public GameScreen(GamePanel gamePanel, World world) {
         super(gamePanel);
         setWorld(world);
+        Hero hero = new Hero();
+
+        Rectangle rectangle = new Rectangle(30, 50, 25, 25);
+        hero.setPosition(rectangle);
+        hero.setWorld(world);
+
+        world.setHero(hero);
         gamePanel.addKeyListener(world);
     }
 

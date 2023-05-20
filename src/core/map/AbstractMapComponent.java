@@ -4,13 +4,15 @@ import java.awt.*;
 
 public abstract class AbstractMapComponent {
 
+    protected Color color = Color.BLUE;
+
     protected Image image;
     protected Rectangle position;
 
     public void draw(Graphics graphics) {
         if (image == null) {
-            graphics.setColor(Color.BLUE);
-            graphics.fillRect(
+            graphics.setColor(color);
+            graphics.drawRect(
                     position.x,
                     position.y,
                     position.width,

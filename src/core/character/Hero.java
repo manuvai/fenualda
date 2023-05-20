@@ -1,5 +1,9 @@
 package core.character;
 
+import core.Level;
+import core.map.tiles.MapTile;
+import core.map.IMapTile;
+
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +15,26 @@ public class Hero extends AbstractCharacter {
 
     private List<Integer> pressedKeys = new ArrayList<>();
 
+    public MapTile getCurrentMapTile() {
+        int i = (int) (position.getY() / IMapTile.MAP_HEIGHT);
+        int j = (int) (position.getX() / IMapTile.MAP_WIDTH);
+
+        Level currentLevel = getWorld()
+                .getCurrentLevel();
+        if (currentLevel == null) {
+            return null;
+        }
+
+        List<List<MapTile>> tiles = currentLevel.getTiles();
+
+        if (tiles == null) {
+            return null;
+        }
+
+        return tiles.get(i)
+                .get(j);
+
+    }
     public int getPoints() {
         return points;
     }
@@ -121,5 +145,31 @@ public class Hero extends AbstractCharacter {
                 setyDirection(CharacterDirection.DOWN);
                 break;
         }
+
+        if (getCurrentMapTile() == null) {
+            return;
+        }
+
+        boolean canMoveY = getCurrentMapTile().canMove(
+                this,
+                position.x,
+                position.y + yDirection
+        );
+
+        boolean canMoveX = getCurrentMapTile().canMove(
+                this,
+                position.x + xDirection,
+                position.y
+        );
+
+        if (!canMoveX) {
+            setxDirection(CharacterDirection.STILL);
+        }
+
+        if (!canMoveY) {
+            setyDirection(CharacterDirection.STILL);
+
+        }
+
     }
 }

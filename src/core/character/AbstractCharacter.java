@@ -1,17 +1,23 @@
 package core.character;
 
+import core.World;
 import core.map.AbstractMapComponent;
+import ui.ComponentUI;
 
 import java.awt.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-public abstract class AbstractCharacter extends AbstractMapComponent {
+public abstract class AbstractCharacter
+        extends AbstractMapComponent
+        implements ComponentUI {
 
     protected double health;
     protected double attack;
     protected double defense;
     protected int xDirection = CharacterDirection.STILL;
     protected int yDirection = CharacterDirection.STILL;
+
+    protected World world;
 
     /*
         Common methods
@@ -23,9 +29,15 @@ public abstract class AbstractCharacter extends AbstractMapComponent {
 
     public void move() {
 
+        int x = getPosition().x + getxDirection();
+        int y = getPosition().y + getyDirection();
+
+        x = (int) Math.max(0, Math.min(GWIDTH - position.getWidth(), x));
+        y = (int) Math.max(0, Math.min(GHEIGHT - position.getHeight(), y));
+
         setPosition(
-                getPosition().x + getxDirection(),
-                getPosition().y + getyDirection()
+                x,
+                y
 
         );
     }
@@ -78,6 +90,12 @@ public abstract class AbstractCharacter extends AbstractMapComponent {
         this.yDirection = yDirection;
     }
 
+    public World getWorld() {
+        return world;
+    }
 
+    public void setWorld(World world) {
+        this.world = world;
+    }
 
 }

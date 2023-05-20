@@ -31,12 +31,6 @@ public class GamePanel extends JPanel implements Runnable, ComponentUI {
         requestFocus();
 
         World world = new World();
-        Hero hero = new Hero();
-
-        Rectangle rectangle = new Rectangle(30, 50, 25, 25);
-        hero.setPosition(rectangle);
-
-        world.setHero(hero);
 
         GameScreen gameScreen = new GameScreen(this, world);
         setCurrentScreen(gameScreen);

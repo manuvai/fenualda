@@ -2,7 +2,6 @@ import ui.ComponentUI;
 import ui.panel.GamePanel;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class Main extends JFrame implements ComponentUI {
 
@@ -21,7 +20,7 @@ public class Main extends JFrame implements ComponentUI {
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		add(new GamePanel());
-		setResizable(false);
+		setResizable(true);
 		setVisible(true);
 	}
 	public static void main(String[] args) {
