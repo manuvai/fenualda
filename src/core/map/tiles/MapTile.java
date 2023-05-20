@@ -1,5 +1,7 @@
 package core.map;
 
+import core.character.AbstractCharacter;
+
 public class MapTile extends AbstractMapComponent {
     private MapTile mapTile;
 
@@ -9,5 +11,9 @@ public class MapTile extends AbstractMapComponent {
 
     public void setMapTile(MapTile mapTile) {
         this.mapTile = mapTile;
+    }
+
+    public boolean canMove(AbstractCharacter character, int x, int y) {
+        return true;
     }
 }
