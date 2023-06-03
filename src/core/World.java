@@ -2,6 +2,9 @@ package core;
 
 import core.character.Enemy;
 import core.character.Hero;
+import core.map.tiles.IMapTile;
+import core.map.tiles.AbstractMapTile;
+import ui.map.MapLoader;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -23,6 +26,32 @@ public class World implements KeyListener {
 
     public World(Hero hero) {
         setHero(hero);
+        initLevels();
+    }
+
+    private void initLevels() {
+        Level level = new Level();
+        MapLoader mapLoader = new MapLoader();
+        level.setTiles(mapLoader.getMapTiles("res/temp.txt"));
+
+
+        int i = 0;
+        for (List<AbstractMapTile> listMapTile : level.getTiles()) {
+            int j = 0;
+            for (AbstractMapTile mapTile : listMapTile) {
+                mapTile.setPosition(
+                        j * IMapTile.TILE_HEIGHT,
+                        i * IMapTile.TILE_WIDTH
+                );
+                j++;
+            }
+
+            i++;
+        }
+
+        levels.add(level);
+
+        currentLevelIndex = 0;
     }
 
     public Hero getHero() {
@@ -54,16 +83,20 @@ public class World implements KeyListener {
     }
 
     public void draw(Graphics graphics) {
-        hero.draw(graphics);
+
         boolean isLevelValid = currentLevelIndex >= 0 &&
                 levels.size() >= currentLevelIndex;
 
         if (isLevelValid) {
             getCurrentLevel()
+                    .getTiles()
+                    .forEach(line -> line
+                            .forEach(tile ->tile.draw(graphics)));
+            getCurrentLevel()
                     .getEnemies()
                     .forEach(enemy -> enemy.draw(graphics));
-
         }
+        hero.draw(graphics);
     }
 
     @Override

@@ -4,9 +4,6 @@ import core.World;
 import core.map.AbstractMapComponent;
 import ui.ComponentUI;
 
-import java.awt.*;
-import java.util.concurrent.CopyOnWriteArrayList;
-
 public abstract class AbstractCharacter
         extends AbstractMapComponent
         implements ComponentUI {

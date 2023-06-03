@@ -7,7 +7,7 @@ public abstract class AbstractMapComponent {
     protected Color color = Color.BLUE;
 
     protected Image image;
-    protected Rectangle position;
+    protected Rectangle position = new Rectangle();
 
     public void draw(Graphics graphics) {
         if (image == null) {

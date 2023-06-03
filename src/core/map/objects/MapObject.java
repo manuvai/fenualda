@@ -1,7 +1,8 @@
-package core.map;
+package core.map.objects;
 
 import core.character.Hero;
 import core.impl.effects.Effect;
+import core.map.AbstractMapComponent;
 
 public class MapObject extends AbstractMapComponent {
     private Effect effect;

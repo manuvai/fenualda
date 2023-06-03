@@ -1,7 +1,7 @@
 package core.character;
 
 import core.Level;
-import core.map.tiles.MapTile;
+import core.map.tiles.AbstractMapTile;
 import core.map.tiles.IMapTile;
 
 import java.awt.event.KeyEvent;
@@ -15,7 +15,38 @@ public class Hero extends AbstractCharacter {
 
     private List<Integer> pressedKeys = new ArrayList<>();
 
-    public MapTile getCurrentMapTile() {
+    @Override
+    public void move() {
+
+        if (getCurrentMapTile() == null) {
+            return;
+        }
+
+        boolean canMoveX = getCurrentMapTile().canMove(
+                this,
+                getxDirection(),
+                0
+        );
+        boolean canMoveY = getCurrentMapTile().canMove(
+                this,
+                0,
+                getyDirection()
+        );
+
+        if (!canMoveX) {
+            setxDirection(CharacterDirection.STILL);
+        }
+
+        if (!canMoveY) {
+            setyDirection(CharacterDirection.STILL);
+        }
+
+        System.out.println(getCurrentMapTile().getPosition().y);
+
+        super.move();
+    }
+
+    public AbstractMapTile getCurrentMapTile() {
         int i = (int) (position.getY() / IMapTile.TILE_HEIGHT);
         int j = (int) (position.getX() / IMapTile.TILE_WIDTH);
 
@@ -25,7 +56,7 @@ public class Hero extends AbstractCharacter {
             return null;
         }
 
-        List<List<MapTile>> tiles = currentLevel.getTiles();
+        List<List<AbstractMapTile>> tiles = currentLevel.getTiles();
 
         if (tiles == null) {
             return null;
@@ -144,31 +175,6 @@ public class Hero extends AbstractCharacter {
             case VK_DOWN:
                 setyDirection(CharacterDirection.DOWN);
                 break;
-        }
-
-        if (getCurrentMapTile() == null) {
-            return;
-        }
-
-        boolean canMoveY = getCurrentMapTile().canMove(
-                this,
-                position.x,
-                position.y + yDirection
-        );
-
-        boolean canMoveX = getCurrentMapTile().canMove(
-                this,
-                position.x + xDirection,
-                position.y
-        );
-
-        if (!canMoveX) {
-            setxDirection(CharacterDirection.STILL);
-        }
-
-        if (!canMoveY) {
-            setyDirection(CharacterDirection.STILL);
-
         }
 
     }

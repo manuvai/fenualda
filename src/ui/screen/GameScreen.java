@@ -15,7 +15,7 @@ public class GameScreen extends AbstractScreen {
         setWorld(world);
         Hero hero = new Hero();
 
-        Rectangle rectangle = new Rectangle(30, 50, 25, 25);
+        Rectangle rectangle = new Rectangle(256, 256, 25, 25);
         hero.setPosition(rectangle);
         hero.setWorld(world);
 
@@ -37,8 +37,9 @@ public class GameScreen extends AbstractScreen {
 
     @Override
     public void draw(Graphics graphics) {
-        graphics.setColor(Color.RED);
+        graphics.setColor(Color.WHITE);
         graphics.fillRect(0, 0, GWIDTH, GHEIGHT);
+
         if (world != null) {
             world.draw(graphics);
         }
