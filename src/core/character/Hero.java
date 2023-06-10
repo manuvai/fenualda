@@ -4,6 +4,8 @@ import core.Level;
 import core.map.tiles.AbstractMapTile;
 import core.map.tiles.IMapTile;
 
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +16,12 @@ public class Hero extends AbstractCharacter {
     private int points;
 
     private List<Integer> pressedKeys = new ArrayList<>();
+
+    public Hero() {
+        Image image = new ImageIcon("src/res/hero/AttackFront (1).png").getImage();
+
+        setImage(image);
+    }
 
     @Override
     public void move() {
@@ -66,6 +74,12 @@ public class Hero extends AbstractCharacter {
                 .get(j);
 
     }
+
+    @Override
+    public void draw(Graphics graphics) {
+        super.draw(graphics);
+    }
+
     public int getPoints() {
         return points;
     }

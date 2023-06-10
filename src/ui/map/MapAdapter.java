@@ -19,6 +19,8 @@ import java.util.Map;
 
 public class MapAdapter {
 
+    private static final String TILE_PATH = "src/res/map1/";
+
     private static final Map<String, Class<? extends AbstractMapTile>> correspondingMapTile =
             new HashMap<String, Class<? extends AbstractMapTile>>() {{
                     put(MapTileType.GROUND, GroundMapTile.class);
@@ -47,7 +49,11 @@ public class MapAdapter {
 
     public static AbstractMapTile toMapTile(String tileString) {
 
-        String tilePath = "src/res/map1/";
+        return toMapTile(TILE_PATH, tileString);
+    }
+    
+    public static AbstractMapTile toMapTile(String tilePath, String tileString) {
+
 
         return getMapTileType(tilePath, tileString);
     }

@@ -9,7 +9,7 @@ public class UpperWallMapTile extends AbstractMapTile {
     public boolean canMove(AbstractCharacter character, int x, int y) {
         int futureY = character.getPosition().y + y;
 
-        int limitY = (int) (getPosition().y + (getPosition().getHeight() / 2));
+        int limitY = (int) (getPosition().y + (getPosition().getHeight() / 3));
 
         return futureY > limitY || x != 0;
     }

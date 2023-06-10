@@ -10,8 +10,8 @@ public class LowerRightCornerMapTile extends AbstractMapTile {
         int futureX = character.getPosition().x + x;
         int futureY = character.getPosition().y + y;
 
-        int limitX = (int) (getPosition().x - (getPosition().getWidth() / 2));
-        int limitY = (int) (getPosition().y - (getPosition().getHeight() / 2));
+        int limitX = (int) (getPosition().x - (getPosition().getWidth() / 3));
+        int limitY = (int) (getPosition().y - (getPosition().getHeight() / 4));
 
         return futureX < limitX && futureY < limitY;
     }

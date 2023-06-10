@@ -4,6 +4,8 @@ import core.World;
 import core.map.AbstractMapComponent;
 import ui.ComponentUI;
 
+import java.awt.*;
+
 public abstract class AbstractCharacter
         extends AbstractMapComponent
         implements ComponentUI {
@@ -24,6 +26,24 @@ public abstract class AbstractCharacter
         setHealth(newHealth);
     }
 
+    @Override
+    public void draw(Graphics graphics) {
+
+        graphics.drawImage(
+                image,
+                position.x + (position.width - image.getWidth(null)) / 2,
+                position.y + (position.height - image.getHeight(null)) / 2,
+                null
+        );
+        graphics.setColor(color);
+        graphics.drawRect(
+                position.x,
+                position.y,
+                position.width,
+                position.height
+        );
+    }
+
     public void move() {
 
         int x = getPosition().x + getxDirection();
@@ -37,6 +57,12 @@ public abstract class AbstractCharacter
                 y
 
         );
+
+        updateIcon();
+    }
+
+    private void updateIcon() {
+
     }
 
     public void attack(AbstractCharacter opponent) {

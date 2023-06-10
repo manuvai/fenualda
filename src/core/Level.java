@@ -3,6 +3,7 @@ package core;
 import core.character.Enemy;
 import core.map.tiles.AbstractMapTile;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +21,14 @@ public class Level {
 
     public void setDifficulty(int difficulty) {
         this.difficulty = difficulty;
+    }
+
+    public void draw(Graphics graphics) {
+        getTiles()
+                .forEach(line -> line
+                        .forEach(tile -> tile.draw(graphics)));
+        getEnemies()
+                .forEach(enemy -> enemy.draw(graphics));
     }
 
     public List<Enemy> getEnemies() {

@@ -88,14 +88,10 @@ public class World implements KeyListener {
                 levels.size() >= currentLevelIndex;
 
         if (isLevelValid) {
-            getCurrentLevel()
-                    .getTiles()
-                    .forEach(line -> line
-                            .forEach(tile ->tile.draw(graphics)));
-            getCurrentLevel()
-                    .getEnemies()
-                    .forEach(enemy -> enemy.draw(graphics));
+            this.getCurrentLevel()
+                    .draw(graphics);
         }
+
         hero.draw(graphics);
     }
 

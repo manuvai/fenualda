@@ -14,6 +14,17 @@ import java.util.stream.Collectors;
 public class MapLoader {
 
     public List<List<AbstractMapTile>> getMapTiles(String file) {
+
+        List<String> mapStrings = extractMapString(file);
+
+
+        List<List<String>> tilesString = extractTileString(mapStrings);
+
+        return constructTilesFromString(tilesString);
+
+    }
+
+    private List<String> extractMapString(String file) {
         InputStream inputStream = ClassLoader.getSystemClassLoader()
                 .getResourceAsStream(file);
         List<String> mapStrings;
@@ -23,17 +34,18 @@ public class MapLoader {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-
-        List<List<String>> tilesString = mapStrings.stream()
-                .map(line -> Arrays.asList(line.split("")))
-                .collect(Collectors.toList());
-
-        return constructTilesFromString(tilesString);
-
+        return mapStrings;
     }
 
-    private List<List<AbstractMapTile>> constructTilesFromString(List<List<String>> tilesString) {
+    private List<List<String>> extractTileString(List<String> mapStrings) {
+        return mapStrings.stream()
+                .map(line -> Arrays.asList(line.split("")))
+                .collect(Collectors.toList());
+    }
+
+    private List<List<AbstractMapTile>> constructTilesFromString(
+            List<List<String>> tilesString
+    ) {
         List<List<AbstractMapTile>> mapTiles = new ArrayList<>();
 
         tilesString.forEach(line -> {

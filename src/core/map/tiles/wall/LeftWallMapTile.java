@@ -9,7 +9,7 @@ public class LeftWallMapTile extends AbstractMapTile {
     public boolean canMove(AbstractCharacter character, int x, int y) {
         int futureX = character.getPosition().x + x;
 
-        int limitX = (int) (getPosition().x + (getPosition().getWidth() / 2));
+        int limitX = (int) (getPosition().x + (getPosition().getWidth() / 3));
 
         return futureX > limitX || y != 0;
     }
